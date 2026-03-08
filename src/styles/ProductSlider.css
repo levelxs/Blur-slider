@@ -21,6 +21,7 @@
 
 body,
 main,
+#root,
 .mySwiper {
     height: 100vh;
     width: 100vw;
@@ -54,7 +55,7 @@ main,
     transition: all var(--transition-duration) var(--transition-timing);
     scale: var(--base-scale);
     opacity: 1;
-    transform: translateX(50%) ;
+    transform: translate(50%) ;
     
 
     /* width: 300px;
@@ -66,11 +67,7 @@ main,
         z-index: 2; */
         /* main image always on top */
 
-    
-    
 }
-
-
 
 .swiper-slide .slide-img img {
     width: 100%;
@@ -131,7 +128,7 @@ main,
     position: absolute;
     opacity: 0;
     filter: blur(20px);
-    transition: opacity var(--transition-duration) ease,
+    transition: opacity var(--transition-duration) ease-in-out,
         filter var(--transition-duration) ease;
     width: 35vw;
 }
@@ -148,9 +145,21 @@ main,
 }
 
 .slide-content p {
+    width: 95%;
     font-family: "Poppins", sans-serif;
     font-size: 14px;
+    
     color: rgba(0, 0, 0, 0.8);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    /* sirf 3 line dikhegi */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* jab expand hoga */
+.slide-content p.expanded {
+    -webkit-line-clamp: unset;
 }
 
 .slide-content .price {
@@ -174,4 +183,110 @@ main,
     width: 20px;
     height: 20px;
     margin-left: 10px;
+}
+
+
+/* Tablet Responsive */
+@media (max-width: 1024px) and (min-width: 768px) {
+
+.logo img,
+.logo h1{
+left: 40px;
+top: 30px;
+}
+
+/* image size reduce */
+.swiper-slide .slide-img{
+width: 220px;
+}
+
+.swiper-slide.swiper-slide-next .slide-img {
+    filter: blur(var(--next-blur));
+    scale: var(--next-scale);
+    transform: translateX(40%);
+    opacity: 1;
+}
+
+/* content position */
+.swiper-slide.swiper-slide-next .slide-content{
+transform: translateX(-70%);
+}
+
+/* text size */
+.slide-content h2{
+font-size: 28px;
+}
+
+.slide-content p{
+width: 100%;
+font-size: 13px;
+}
+
+.slide-content .price{
+font-size: 24px;
+}
+
+/* button size */
+.slide-content button{
+font-size: 16px;
+}
+
+}
+
+/* mobile screen responsive */
+/* Mobile Responsive */
+@media (max-width: 767px) {
+
+    /* logo adjust */
+    .logo img,
+    .logo h1 {
+        left: 20px;
+        top: 20px;
+        width: 80px;
+        font-size: 20px;
+    }
+
+        .swiper-slide.swiper-slide-next .slide-img {
+        filter: blur(var(--next-blur));
+        scale: var(--next-scale);
+        transform: translateX(28%);
+        opacity: 1;  
+    }
+
+    /* heading */
+    .slide-content h2 {
+        font-size: 22px;
+
+    }
+
+    /* paragraph */
+    .slide-content p {
+        width: 90%;
+        /* background-color: crimson; */
+        font-size: 13px;
+        
+    }
+        .slide-content p.expanded {
+            -webkit-line-clamp: unset;
+            max-height: 200px;
+            /* ya jo height chahiye */
+            overflow-y: auto;   }
+    
+
+    /* price */
+    .slide-content .price {
+        font-size: 22px;
+        margin-block: 10px;
+    }
+
+    /* button center */
+    .slide-content button {
+        width:70%;
+        text-align: start;
+        font-size: 11px;
+        justify-content: center;
+    }
+
+    
+
 }

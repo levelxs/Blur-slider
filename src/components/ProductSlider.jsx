@@ -2,6 +2,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Mousewheel } from "swiper/modules";
 import "swiper/css";
 import "../styles/ProductSlider.css";
+import ProductDesc from "./ProductDesc";
 
 const products = [
     {
@@ -63,13 +64,14 @@ export default function ProductSlider() {
                 speed={1500}
                 spaceBetween={0}
                 className="mySwiper"
+
             >
                 {products.map((item, index) => (
                     <SwiperSlide key={index}>
                         <div className="slide-content">
                             <div className="info">
                                 <h2>{item.title}</h2>
-                                <p>{item.desc}</p>
+                                <ProductDesc text={item.desc} />
                             </div>
                             <div className="price">{item.price}</div>
 
