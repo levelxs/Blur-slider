@@ -41,7 +41,7 @@ main,
 
 /* Slide Base */
 .swiper-slide {
-   
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -55,8 +55,8 @@ main,
     transition: all var(--transition-duration) var(--transition-timing);
     scale: var(--base-scale);
     opacity: 1;
-    transform: translate(50%) ;
-    
+    transform: translate(50%);
+
 
     /* width: 300px;
         aspect-ratio: 1;
@@ -65,7 +65,7 @@ main,
         transform: translateX(50%) scale(0.5);
         position: relative;
         z-index: 2; */
-        /* main image always on top */
+    /* main image always on top */
 
 }
 
@@ -73,7 +73,7 @@ main,
     width: 100%;
     height: 100%;
     object-fit: contain;
-    
+
 }
 
 .swiper-slide .slide-img-blur {
@@ -148,7 +148,7 @@ main,
     width: 95%;
     font-family: "Poppins", sans-serif;
     font-size: 14px;
-    
+
     color: rgba(0, 0, 0, 0.8);
     display: -webkit-box;
     -webkit-line-clamp: 3;
@@ -189,47 +189,47 @@ main,
 /* Tablet Responsive */
 @media (max-width: 1024px) and (min-width: 768px) {
 
-.logo img,
-.logo h1{
-left: 40px;
-top: 30px;
-}
+    .logo img,
+    .logo h1 {
+        left: 40px;
+        top: 30px;
+    }
 
-/* image size reduce */
-.swiper-slide .slide-img{
-width: 220px;
-}
+    /* image size reduce */
+    .swiper-slide .slide-img {
+        width: 220px;
+    }
 
-.swiper-slide.swiper-slide-next .slide-img {
-    filter: blur(var(--next-blur));
-    scale: var(--next-scale);
-    transform: translateX(40%);
-    opacity: 1;
-}
+    .swiper-slide.swiper-slide-next .slide-img {
+        filter: blur(var(--next-blur));
+        scale: var(--next-scale);
+        transform: translateX(40%);
+        opacity: 1;
+    }
 
-/* content position */
-.swiper-slide.swiper-slide-next .slide-content{
-transform: translateX(-70%);
-}
+    /* content position */
+    .swiper-slide.swiper-slide-next .slide-content {
+        transform: translateX(-70%);
+    }
 
-/* text size */
-.slide-content h2{
-font-size: 28px;
-}
+    /* text size */
+    .slide-content h2 {
+        font-size: 28px;
+    }
 
-.slide-content p{
-width: 100%;
-font-size: 13px;
-}
+    .slide-content p {
+        width: 100%;
+        font-size: 13px;
+    }
 
-.slide-content .price{
-font-size: 24px;
-}
+    .slide-content .price {
+        font-size: 24px;
+    }
 
-/* button size */
-.slide-content button{
-font-size: 16px;
-}
+    /* button size */
+    .slide-content button {
+        font-size: 16px;
+    }
 
 }
 
@@ -237,56 +237,162 @@ font-size: 16px;
 /* Mobile Responsive */
 @media (max-width: 767px) {
 
-    /* logo adjust */
-    .logo img,
-    .logo h1 {
-        left: 20px;
-        top: 20px;
-        width: 80px;
-        font-size: 20px;
+    .swiper-slide .slide-img {
+        width: 80%;
+        scale: 1;
+        transform: none;
+        filter: none;
     }
 
-        .swiper-slide.swiper-slide-next .slide-img {
-        filter: blur(var(--next-blur));
-        scale: var(--next-scale);
-        transform: translateX(28%);
-        opacity: 1;  
+    .swiper-slide.swiper-slide-active .slide-img {
+        scale: 1;
+        transform: none;
+        opacity: 1;
     }
 
-    /* heading */
-    .slide-content h2 {
-        font-size: 22px;
+    .swiper-slide.swiper-slide-next .slide-img {
+        scale: 1;
+        transform: none;
+        filter: none;
+    }
+}
 
+@media (max-width: 767px) {
+
+    .swiper-slide {
+        flex-direction: column;
     }
 
-    /* paragraph */
-    .slide-content p {
+    .slide-content {
+        position: static;
+        opacity: 1;
+        filter: none;
         width: 90%;
-        /* background-color: crimson; */
-        font-size: 13px;
-        
-    }
-        .slide-content p.expanded {
-            -webkit-line-clamp: unset;
-            max-height: 200px;
-            /* ya jo height chahiye */
-            overflow-y: auto;   }
-    
-
-    /* price */
-    .slide-content .price {
-        font-size: 22px;
-        margin-block: 10px;
+        text-align: center;
+        margin-top: 20px;
     }
 
-    /* button center */
-    .slide-content button {
-        width:70%;
-        text-align: start;
-        font-size: 11px;
+    .slide-img {
+        display: flex;
         justify-content: center;
     }
 
-    
+
+
+    .slide-img-blur {
+        display: none;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .swiper-slide .slide-content {
+        position: static;
+        opacity: 1;
+        filter: none;
+        transform: none;
+        width: 90%;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .swiper-slide.swiper-slide-next .slide-content {
+        transform: none;
+        opacity: 1;
+    }
+
+    .swiper-slide {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .slide-img {
+        width: 70%;
+        margin-top: 40px;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .swiper-slide {
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .slide-img {
+        order: 1;
+        width: 75%;
+        height: auto;
+        margin-top: 40px;
+    }
+
+    .slide-content {
+        order: 2;
+        position: static;
+        opacity: 1;
+        filter: none;
+        transform: none;
+        width: 90%;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .slide-img-blur {
+        display: none;
+    }
+
+    .slide-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* sab items center */
+        text-align: center;
+        /* text center */
+        gap: 2px;
+        /* thoda spacing */
+       
+        
+    }
+
+    .slide-content p {
+        width: 85%;
+        padding-left: 30px;
+        text-align: center;
+        line-height: 18px;
+           }
+
+    .slide-content button {
+        justify-content: center;
+    }
+}
+
+/* content see more scrolling ko handle kiya */
+@media (max-width: 767px) {
+
+    .slide-content p.expanded {
+        -webkit-line-clamp: unset;
+            max-height: 140px;
+            overflow-y: auto;
+            padding-right: 5px;
+        
+    }
+
+        .slide-content p {
+            touch-action: pan-y;     }
+
+    .slide-content h2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;  
+        font-size:22px;
+    }
+        .see-more-btn {
+            display: block;
+            margin: 10px auto;
+            text-align: center;     } 
 
 }

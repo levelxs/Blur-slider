@@ -64,6 +64,17 @@ export default function ProductSlider() {
                 speed={1500}
                 spaceBetween={0}
                 className="mySwiper"
+                breakpoints={{
+                    0: {
+                        slidesPerView: 1,
+                    },
+                    768: {
+                        slidesPerView: 4,
+                    },
+                    1024: {
+                        slidesPerView: 4,
+                    }
+                }}
 
             >
                 {products.map((item, index) => (
