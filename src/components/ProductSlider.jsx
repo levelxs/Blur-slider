@@ -87,7 +87,7 @@ export default function ProductSlider() {
                             <div className="price">{item.price}</div>
 
                             <button className="explore-btn">
-                                <span>Explore Product</span>
+                                <span>Explore Art</span>
                                 <svg
                                     width="16"
                                     height="16"

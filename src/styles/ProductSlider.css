@@ -344,6 +344,8 @@ main,
         display: none;
     }
 
+    
+
     .slide-content {
         display: flex;
         flex-direction: column;
@@ -394,5 +396,103 @@ main,
             display: block;
             margin: 10px auto;
             text-align: center;     } 
+
+}
+
+@media (max-width: 767px) {
+
+    .swiper-slide .slide-img {
+        width: 75%;
+        margin-top: 40px;
+        transform: none;
+        scale: 0.7;
+        filter: blur(20px);
+        opacity: 0.6;
+        transition: all 1s ease;
+    }
+
+    /* active slide */
+    .swiper-slide.swiper-slide-active .slide-img {
+        scale: 1;
+        filter: blur(0px);
+        opacity: 1;
+    }
+
+    /* next slide */
+    .swiper-slide.swiper-slide-next .slide-img {
+        scale: 0.85;
+        filter: blur(8px);
+        opacity: 0.8;
+    }
+
+    /* blur background effect */
+    .swiper-slide.swiper-slide-active .slide-img-blur {
+        opacity: 0.4;
+        filter: blur(50px);
+        position: absolute;
+        z-index: -1;
+    }
+
+}
+
+@media (max-width: 767px) {
+
+    /* base content state */
+    .swiper-slide .slide-content {
+        position: static;
+        opacity: 0.4;
+        filter: blur(10px);
+        transform: scale(0.9);
+        transition: all 0.8s ease;
+        width: 90%;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    /* active slide content */
+    .swiper-slide.swiper-slide-active .slide-content {
+        opacity: 1;
+        filter: blur(0);
+        transform: scale(1);
+    }
+
+    /* next slide content */
+    .swiper-slide.swiper-slide-next .slide-content {
+        opacity: 0.7;
+        filter: blur(4px);
+        transform: scale(0.95);
+    }
+
+}
+
+/* extra smooth effect */
+@media (max-width: 767px) {
+
+    /* base state */
+    .swiper-slide .slide-content {
+        position: static;
+        width: 90%;
+        text-align: center;
+        margin-top: 20px;
+
+        opacity: 0;
+        filter: blur(15px);
+        transform: translateY(60px);
+        transition: all 0.8s ease;
+    }
+
+    /* active slide content */
+    .swiper-slide.swiper-slide-active .slide-content {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(0);
+    }
+
+    /* next slide content */
+    .swiper-slide.swiper-slide-next .slide-content {
+        opacity: 0.6;
+        filter: blur(6px);
+        transform: translateY(20px);
+    }
 
 }
