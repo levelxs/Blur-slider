@@ -82,27 +82,21 @@ export default function ProductSlider() {
                         <div className="slide-content">
                             <div className="info">
                                 <h2>{item.title}</h2>
+                                <div className="by-cat-div">
+                                    <p className="category">By: Pradip Sarkar, India </p>
+                                    <p className="category">Category: Abstract Painting</p>
+                                </div>
+                                <span className="desc">Description: </span>
                                 <ProductDesc text={item.desc} />
                             </div>
-                            <div className="price">{item.price}</div>
+                            <div className="price">Price:{item.price}</div>
 
-                            <button className="explore-btn">
-                                <span>Explore Art</span>
-                                <svg
-                                    width="16"
-                                    height="16"
-                                    viewBox="0 0 16 16"
-                                    fill="none"
-                                >
-                                    <path
-                                        d="M3.33334 12.6667L12.6667 3.33333M12.6667 3.33333H4.66667M12.6667 3.33333V11.3333"
-                                        stroke="currentColor"
-                                        strokeWidth="1.5"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    />
-                                </svg>
-                            </button>
+                            <div className="cart-explore-btn">
+                                <button className="explore-btn">
+                                    <span>Explore Art</span>
+                                </button>
+                                <button className="cart-btn">Add to cart</button>
+                            </div>
                         </div>
 
                         <div className="slide-img">
