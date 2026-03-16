@@ -18,7 +18,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
+
 }
 
 body,
@@ -28,7 +28,7 @@ main,
     height: 100vh;
     width: 100vw;
     /* font-family:  sans-serif; */
-    font-family: 'Agile-Regular',sans-serif;
+    font-family: 'Agile Regular', sans-serif
 }
 
 .mySwiper {
@@ -44,7 +44,6 @@ main,
 
 /* Slide Base */
 .swiper-slide {
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -52,37 +51,28 @@ main,
 
 /* Image */
 .swiper-slide .slide-img {
-    width: 300px;
-    aspect-ratio: 1;
+    width: 320px;
+    /* aspect-ratio: 1; */
+    height: auto;
     filter: blur(var(--base-blur));
     transition: all var(--transition-duration) var(--transition-timing);
     scale: var(--base-scale);
     opacity: 1;
     transform: translate(50%);
 
-
-    /* width: 300px;
-        aspect-ratio: 1;
-        filter: blur(20px);
-        transition: all 1.5s ease;
-        transform: translateX(50%) scale(0.5);
-        position: relative;
-        z-index: 2; */
-    /* main image always on top */
-
 }
 
-.slide-content .category{
+.slide-content .category {
     font-weight: 400;
     font-size: medium;
 }
 
-.slide-content .desc{
-    font-weight: bold  ;
+.slide-content .desc {
+    font-weight: bold;
 }
 
-.slide-content .cart-explore-btn{
-    display: flex; 
+.slide-content .cart-explore-btn {
+    display: flex;
     gap: 30px;
 }
 
@@ -101,8 +91,8 @@ main,
     background-color: white;
 }
 
-.slide-content .by-cat-div{
-margin-bottom: 10px;
+.slide-content .by-cat-div {
+    margin-bottom: 10px;
 }
 
 
@@ -110,16 +100,80 @@ margin-bottom: 10px;
     width: 100%;
     height: 100%;
     object-fit: contain;
-    border: 8px solid rgb(158, 129, 0);
-        padding: 6px;
-        background: #eee;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 1);
-        
+}
+
+
+/* ----------------frame add--------  */
+.swiper-slide .slide-img img {
+    width: 100%;
+    max-height: 420px;
+    display: block;
+    object-fit: contain;
+
+    /* mat board (off-white background behind the painting) */
+    padding: 0px;
+    background: rgb(255, 249, 224);
+
+    /* gold mat edge (inside the wooden frame) */
+    border: 4px solid;
+    border-color: rgb(207, 166, 0) rgb(207, 166, 0) rgb(145, 110, 0) rgb(145, 110, 0);
+
+    /* wooden frame */
+    outline: 14px solid rgb(65, 40, 16);
+    border-radius: px;
+
+    /* 3D bevel and shadow effect */
+    box-shadow:
+        inset 0 0 0 3px rgba(255, 255, 255, 0.3),
+        /* inner bevel highlight */
+        0 4px 10px rgba(0, 0, 0, 0.5),
+        /* main shadow for depth */
+        0 10px 20px rgba(0, 0, 0, 0.6);
+
+    /* optional slight rotation for a realistic hanging effect */
+    transform: perspective(800px) rotateX(1deg) rotateY(-1deg);
+    transition: transform 0.3s ease;
+}
+/* --------------above frame code---------  */
+
+/* hover effect for slight depth interaction */
+.swiper-slide .slide-img img:hover {
+    transform: perspective(800px) rotateX(0deg) rotateY(0deg) scale(1.02);
+}
+
+.slide-img {
+    position: relative;
+}
+
+.slide-img::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: linear-gradient(120deg,
+            rgba(255, 255, 255, 0.35) 0%,
+            rgba(255, 255, 255, 0.15) 25%,
+            rgba(255, 255, 255, 0) 60%);
+
+    pointer-events: none;
+}
+
+/* Max height limit for portrait image */
+.swiper-slide .slide-img img {
+    max-height: 45vh;
+    /* iske aage portrait image nahi badegi */
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
 }
 
 .swiper-slide .slide-img-blur {
     opacity: 0;
     position: absolute;
+
 }
 
 /* Active */
@@ -127,6 +181,7 @@ margin-bottom: 10px;
     scale: var(--active-scale);
     transform: translateX(-60%);
     opacity: 0;
+
 }
 
 /* Next */
@@ -142,6 +197,7 @@ margin-bottom: 10px;
     filter: blur(var(--blur-effect));
     z-index: -1;
     transform: translateX(100%);
+
 }
 
 .swiper-slide.swiper-slide-next .slide-img-blur img {
@@ -153,15 +209,18 @@ margin-bottom: 10px;
     filter: blur(var(--next-plus-blur));
     scale: var(--next-plus-scale);
     opacity: 1;
+
 }
 
 .swiper-slide.swiper-slide-next {
     transform: translateX(50%);
+
 }
 
 .swiper-slide.swiper-slide-next+.swiper-slide {
-    transform: translateX(30%);
-    z-index: -1;
+    transform: translateX(23%);
+    z-index: -2;
+
 }
 
 /* Content */
@@ -172,15 +231,22 @@ margin-bottom: 10px;
     transition: opacity var(--transition-duration) ease-in-out,
         filter var(--transition-duration) ease;
     width: 35vw;
+
 }
 
 .swiper-slide.swiper-slide-next .slide-content {
     transform: translateX(-80%);
     opacity: 1;
     filter: blur(0);
+
 }
 
-.slide-content h2 {
+.slide-content .art-title {
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.slide-content .art-heading {
     font-size: 36px;
     margin-bottom: 12px;
 }
@@ -189,7 +255,6 @@ margin-bottom: 10px;
     width: 95%;
     font-family: "Poppins", sans-serif;
     font-size: 14px;
-
     color: rgba(0, 0, 0, 0.8);
     display: -webkit-box;
     -webkit-line-clamp: 3;
@@ -198,9 +263,21 @@ margin-bottom: 10px;
     overflow: hidden;
 }
 
+/* Art-meta */
+.slide-content .info .art-meta {
+    margin-bottom: 10px;
+}
+
 /* jab expand hoga */
 .slide-content p.expanded {
     -webkit-line-clamp: unset;
+}
+
+@media (max-width: 767px) {
+    .slide-content p {
+        -webkit-line-clamp: 1;
+        /* 1 line */
+    }
 }
 
 .slide-content .price {
@@ -274,6 +351,15 @@ margin-bottom: 10px;
 
 }
 
+.art-title,
+.art-meta,
+.art-description,
+.price,
+.cart-explore-btn {
+    opacity: 0;
+    transform: translateY(70px);
+}
+
 /*-------------- mobile screen responsive---------------------*/
 
 
@@ -318,12 +404,13 @@ margin-bottom: 10px;
     }
 
     .swiper-slide {
-        height: 100vh;
+    
+        height: 100%;
         flex-direction: column-reverse;
         justify-content: center;
         align-items: center;
         text-align: center;
-        
+        padding: 10px;
     }
 }
 
@@ -333,40 +420,36 @@ margin-bottom: 10px;
         order: 1;
         width: 75%;
         margin-top: 10px;
-        
-        
     }
 
-    
 
     .slide-img-blur {
         display: none;
     }
 
-
     .slide-content {
+        height: 50%;
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
-        gap: px;
+        line-height: 25px;
+        padding: px;
         
     }
 
     .slide-content p {
         width: 90%;
         font-size: 16px;
-        padding-left:px;
         margin-left: 16px;
         text-align: center;
         /* text-align:justify; */
         line-height: 18px;
-        
 
     }
 
     .slide-content button {
-        justify-content: center;  
+        justify-content: center;
     }
 }
 
@@ -375,7 +458,7 @@ margin-bottom: 10px;
 
     .slide-content p.expanded {
         -webkit-line-clamp: unset;
-        max-height: 140px;
+        max-height: 100px;
         overflow-y: auto;
         padding-right: 5px;
     }
@@ -384,21 +467,37 @@ margin-bottom: 10px;
         touch-action: pan-y;
     }
 
-    .slide-content .desc{
-       font-weight: 600;
+        .slide-content .art-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            font-weight: normal;
+            
+        }
+    
+        .slide-content .art-heading {
+            padding-top: 10px;
+            font-size: 25px;
+            margin-bottom: 10px; 
+            font-weight: normal;
+        }
+
+    .slide-content .desc {
+        font-weight: 600;
     }
 
-    .slide-content .price{
+    .slide-content .price {
         color: black;
+        font-size: 23px;
+        font-weight: normal;
     }
 
-    .slide-content .cart-explore-btn{
+    .slide-content .cart-explore-btn {
         display: flex;
         align-items: center;
         gap: 10px;
     }
 
-    .slide-content .explore-btn{
+    .slide-content .explore-btn {
         border: solid black 1px;
         padding: 5px 10px;
         border-radius: 50px;
@@ -406,32 +505,55 @@ margin-bottom: 10px;
         color: white;
         background-color: rgb(0, 0, 0);
     }
-        .slide-content .cart-btn {
-            border: solid black 1px;
-            padding: 5px 10px;
-            border-radius: 50px;
-            margin-bottom: 10px;
-            background-color: white;
-        }
 
-    .slide-content .category{
+    .slide-content .cart-btn {
+        border: solid black 1px;
+        padding: 5px 10px;
+        border-radius: 50px;
+        margin-bottom: 10px;
+        background-color: white;
+    }
+
+    .slide-content .category {
         font-weight: 300;
         font-size: medium;
     }
+
+
     .slide-content h2 {
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
         font-size: 22px;
-        font-weight:600;
+        font-weight: 600;
     }
 
     .see-more-btn {
         display: block;
-        margin: 10px auto;
+        margin: 3px auto;
         text-align: center;
     }
+
+    @media (max-width: 767px) {
+
+        .swiper-slide .slide-img {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Max height limit for portrait image */
+        .swiper-slide .slide-img img {
+            max-height: 40vh;
+            /* iske aage portrait image nahi badegi */
+            width: auto;
+            max-width: 100%;
+            object-fit: contain;
+        }
+    }
+
+
 
 }
 
@@ -482,7 +604,7 @@ margin-bottom: 10px;
         width: 90%;
         text-align: center;
         margin-top: 20px;
-        
+
     }
 
     /* active slide content */
@@ -514,7 +636,7 @@ margin-bottom: 10px;
         filter: blur(15px);
         transform: translateY(60px);
         transition: all 0.8s ease;
-        
+
     }
 
     /* active slide content */
@@ -531,6 +653,5 @@ margin-bottom: 10px;
         transform: translateY(20px);
     }
 
-    
-}
 
+}

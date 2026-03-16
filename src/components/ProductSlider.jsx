@@ -3,6 +3,10 @@ import { Mousewheel } from "swiper/modules";
 import "swiper/css";
 import "../styles/ProductSlider.css";
 import ProductDesc from "./ProductDesc";
+import { useEffect } from "react";
+import { useRef } from "react";
+import { gsap } from "gsap";
+import { useGSAP } from '@gsap/react'
 
 const products = [
     {
@@ -50,6 +54,37 @@ const products = [
 ];
 
 export default function ProductSlider() {
+
+    const handleChange = (e) => {
+        console.log('change', e);
+
+    }
+    const animateText = () => {
+
+        const activeSlides = document.querySelectorAll(".swiper-slide-visible");
+
+        activeSlides.forEach((slide) => {
+
+            const elements = slide.querySelectorAll(
+                ".art-heading ,.art-title, .art-meta, .art-description, .price, .cart-explore-btn"
+            );
+
+            gsap.fromTo(
+                elements,
+                { y: 70, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.8,
+                    delay: 0.5,   // 👈 yaha delay add
+                    stagger: 0.12,
+                    ease: "power3.out"
+                }
+            );
+
+        });
+
+    };
     return (
         <main>
             <div className="logo">
@@ -62,7 +97,11 @@ export default function ProductSlider() {
                 mousewheel={true}
                 slidesPerView={4}
                 speed={1500}
-                spaceBetween={0}
+                spaceBetween={4}
+                watchSlidesProgress={true}
+                onChange={handleChange}
+                onInit={animateText}
+                onSlideChange={(swiper) => animateText(swiper)}
                 className="mySwiper"
                 breakpoints={{
                     0: {
@@ -80,23 +119,33 @@ export default function ProductSlider() {
                 {products.map((item, index) => (
                     <SwiperSlide key={index}>
                         <div className="slide-content">
+
                             <div className="info">
-                                <h2>{item.title}</h2>
-                                <div className="by-cat-div">
-                                    <p className="category">By: Pradip Sarkar, India </p>
-                                    <p className="category">Category: Abstract Painting</p>
+                                <h1 className="art-heading">Featured ArtWork</h1>
+                                <h2 className="art-title">{item.title}</h2>
+
+                                <div className="art-meta">
+                                    <p><strong>Artist:</strong> Pradip Sarkar, India</p>
+                                    <p><strong>Category:</strong> Abstract Painting</p>
+                                    <p><strong>Size:</strong> 36 × 36 inch (91.44 × 91.44 cm)</p>
                                 </div>
-                                <span className="desc">Description: </span>
-                                <ProductDesc text={item.desc} />
+
+                                <div className="art-description">
+                                    <p className="desc-title"><strong>Description</strong></p>
+                                    <ProductDesc text={item.desc} className="product-desc" />
+                                </div>
+
                             </div>
+
                             <div className="price">Price:{item.price}</div>
 
                             <div className="cart-explore-btn">
                                 <button className="explore-btn">
-                                    <span>Explore Art</span>
+                                    <span>View More</span>
                                 </button>
-                                <button className="cart-btn">Add to cart</button>
+                                <button className="cart-btn">Buy Now</button>
                             </div>
+
                         </div>
 
                         <div className="slide-img">

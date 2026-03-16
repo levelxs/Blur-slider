@@ -23,7 +23,7 @@ export default function ProductDesc({ text }) {
             {showBtn && (
 
                 <button
-                    className="see-more-btn" style={{fontWeight:600, fontSize:'12px'}}
+                    className="see-more-btn" style={{ fontWeight: 600, fontSize: '12px' }}
                     onClick={() => setExpanded(!expanded)}>
                     {expanded ? "...See less" : "See more..."}
                 </button>
