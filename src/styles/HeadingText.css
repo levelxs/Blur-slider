@@ -1,0 +1,16 @@
+.heading-container{
+    min-height: 30vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.heading-text{
+    font-size: 10vh;
+    color: #b09848;
+}
+
+/* heading mask */
+.heading-container .heading-mask{
+    
+}

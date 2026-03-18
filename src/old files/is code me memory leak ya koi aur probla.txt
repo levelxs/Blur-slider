@@ -1,4 +1,4 @@
-
+is code me memory leak ya koi aur problam ho rahi hai kya jiske karan performance kam ho raha hai
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Mousewheel } from "swiper/modules";
@@ -57,63 +57,40 @@ const products = [
 
 export default function ProductSlider() {
 
-    const containerRef = useRef();
+    const handleChange = (e) => {
+        console.log('change', e);
+
+    }
     const animateText = () => {
 
         const activeSlides = document.querySelectorAll(".swiper-slide-visible");
 
-
         activeSlides.forEach((slide) => {
 
-            const headingWords = slide.querySelectorAll(".art-heading span");
-
             const elements = slide.querySelectorAll(
-                ".art-title, .art-meta, .art-description, .price, .cart-explore-btn"
+                ".art-heading ,.art-title, .art-meta, .art-description, .price, .cart-explore-btn"
             );
 
-            gsap.killTweensOf(headingWords);
-            gsap.killTweensOf(elements);
-
-            gsap.set(headingWords, { y: "100%", opacity: 0 });
-            gsap.set(elements, { y: 70, opacity: 0 });
-
-            const tl = gsap.timeline()
-
-            tl.to(headingWords, {
-                y: "0%",
-                opacity: 1,
-                delay: 0.5,
-                stagger: 0.2,
-                duration: 0.8,
-                ease: "power4.out"
-            });
-
-            //step 2
-            tl.to(elements, {
-                y: 0,
-                opacity: 1,
-                stagger: 0.12,
-                ease: "power3.out"
-            }, "+=0.2");
+            gsap.fromTo(
+                elements,
+                { y: 70, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.8,
+                    delay: 0.5,   // 👈 yaha delay add
+                    stagger: 0.12,
+                    ease: "power3.out"
+                }
+            );
 
         });
 
     };
     return (
-        <main ref={containerRef} className="main-container">
-
-            <div className="slider-heading">
-                <h1>
-                    {"Featured ArtWorks".split(" ").map((word, i) => (
-                        <span key={i}>{word}&nbsp;</span>
-                    ))}
-                </h1>
-            </div>
-
+        <main>
             <div className="logo">
-                <h1>
-                    <img src="https://zigguratss.com/assets/upload/daf46078cec518ef7578288b9247f153.png" alt="" />
-                </h1>
+                <h1>logo</h1>
             </div>
 
             <Swiper
@@ -124,7 +101,8 @@ export default function ProductSlider() {
                 speed={1500}
                 spaceBetween={4}
                 watchSlidesProgress={true}
-                onInit={(swiper) => animateText(swiper)}
+                onChange={handleChange}
+                onInit={animateText}
                 onSlideChange={(swiper) => animateText(swiper)}
                 className="mySwiper"
                 breakpoints={{
@@ -140,21 +118,12 @@ export default function ProductSlider() {
                 }}
 
             >
-
                 {products.map((item, index) => (
                     <SwiperSlide key={index}>
                         <div className="slide-content">
 
                             <div className="info">
-                                {/* heading */}
-                                {/* <div className="heading-mask">
-                                    <h1 className="art-heading">
-                                        {"Featured ArtWork".split(" ").map((word, i) => (
-                                            <span key={i}>{word}&nbsp; </span>
-                                            // &nbsp; -- for empty space
-                                        ))}
-                                    </h1>
-                                </div> */}
+                                <h1 className="art-heading">Featured ArtWork</h1>
                                 <h2 className="art-title">{item.title}</h2>
 
                                 <div className="art-meta">
@@ -176,7 +145,7 @@ export default function ProductSlider() {
                                 <button className="explore-btn">
                                     <span>View More</span>
                                 </button>
-                                <button className="buy-now">Buy Now</button>
+                                <button className="cart-btn">Buy Now</button>
                             </div>
 
                         </div>
