@@ -15,42 +15,61 @@ const products = [
         title: "Moksham gachami",
         desc: "Depicting way to peace on path of lord Buddha ",
         price: "SOLD",
+        size: '36 × 36 inch (91.44 × 91.44 cm)',
+        category: 'Abstract Painting',
+        artist: ' Pradip Sarkar, India',
         img: "https://zigguratss.com/assets/upload/art-963.jpeg",
     },
     {
         title: "Suramyaa",
         desc: "Depicting Krishna Radha love towards cows",
         price: " 43750/-",
+        size: '36 × 36 inch (91.44 × 91.44 cm)',
+        category: 'Abstract Painting',
         img: "https://zigguratss.com/assets/upload/art-960.jpeg",
     },
     {
         title: "Shepherd",
         desc: "I had just stepped out into a new world as my first solo traveller. So many questions in my head, i was beginning to feel overwhelmed by all the insecurities and confusions. As i was walking thtough this small tree cover through a Rajasthan. I suddnenly noticed a flock of sheeps walking past me, a shephered brushed past me and ran towards a ditch on the open field. For some reason i felt a pang of energy within me, i followed him and the sheeps, and next moment i knew, i was running behind them, taking hold of that one moment. After that euphoria, I realised all my insecurities and confusions had been replaced into a sense of wonder and love for adventure. This was the reason i left home. Realising again, I am in God's own lap forever. ",
         price: "226200/-",
+        size: '36 × 36 inch (91.44 × 91.44 cm)',
+        category: 'Abstract Painting',
         img: "https://zigguratss.com/assets/upload/art-1087.jpg",
     },
     {
         title: "Celibration-7",
         desc: "Celibration-7",
-        price: " 169000",
+        price: " 169000/-",
+        size: '36 × 36 inch (91.44 × 91.44 cm)',
+        category: 'Abstract Painting',
+        artist: ' Pradip Sarkar, India',
         img: "https://zigguratss.com/assets/upload/art/zigguratss_df2895a67970247c650c120119df4d70.jpg",
     },
     {
         title: "Milano e le storie sulla Darsena",
         desc: "La Darsena, un antico bacino portuale situato nel quartiere Navigli di Milano, sia un luogo simbolico che rappresenta la storia legata all'acqua della città. Il cuore liquido di Milano, rappresenta, così, la connessione tra il passato storico e l'attualità della città, testimoniando l'importanza che l'acqua ha avuto nella sua evoluzione. La sua riqualificazione ha contribuito a valorizzare questo patrimonio e a creare uno spazio pubblico vivace e attrattivo.",
         price: "175000/-",
+        size: '36 × 36 inch (91.44 × 91.44 cm)',
+        category: 'Abstract Painting',
+        artist: ' Pradip Sarkar, India',
         img: "https://zigguratss.com/assets/upload/art-361.jpg",
     },
     {
         title: "Eternal Grace",
         desc: "This artwork places the peacock within an opulent interior, blending natural beauty with architectural grandeur. The ornate pillars, vessels, and carved furniture symbolize heritage and cultural richness, while the peacock embodies grace, pride, and divine elegance — as though nature itself has claimed the palace. In halls carved with time, the peacock stands — not as a visitor, but as royalty returned. Its feathers spill like silk, guarding stories older than the walls.",
         price: " 68750/-",
+        size: '36 × 36 inch (91.44 × 91.44 cm)',
+        category: 'Abstract Painting',
+        artist: ' Pradip Sarkar, India',
         img: "https://zigguratss.com/assets/upload/art/zigguratss_40ab5c59106bbfaa3de56dc5194fcfc0.jpeg",
     },
     {
         title: "Tranquil Awakening",
         desc: "Tranquil Awakening embodies the serene beauty and transformative power of meditation in today’s fast-paced, chaotic world. This soothing artwork centers on a meditative figure radiating calmness and introspection. Her closed eyes and gentle posture reflect a deep connection to her inner self, symbolized by the radiant white lotus on her forehead—a timeless emblem of purity, enlightenment, and rebirth..",
         price: " 13750/-",
+        size: '36 × 36 inch (91.44 × 91.44 cm)',
+        category: 'Abstract Painting',
+        artist: ' Pradip Sarkar, India',
         img: "https://zigguratss.com/assets/upload/art-1259.jpg",
     },
 ];
@@ -58,6 +77,8 @@ const products = [
 export default function ProductSlider() {
 
     const containerRef = useRef();
+
+    // text animation code
     const animateText = () => {
 
         const activeSlides = document.querySelectorAll(".swiper-slide-visible");
@@ -65,33 +86,23 @@ export default function ProductSlider() {
 
         activeSlides.forEach((slide) => {
 
-            const headingWords = slide.querySelectorAll(".art-heading span");
 
             const elements = slide.querySelectorAll(
                 ".art-title, .art-meta, .art-description, .price, .cart-explore-btn"
             );
 
-            gsap.killTweensOf(headingWords);
+
             gsap.killTweensOf(elements);
 
-            gsap.set(headingWords, { y: "100%", opacity: 0 });
+
             gsap.set(elements, { y: 70, opacity: 0 });
 
             const tl = gsap.timeline()
 
-            tl.to(headingWords, {
-                y: "0%",
-                opacity: 1,
-                delay: 0.5,
-                stagger: 0.2,
-                duration: 0.8,
-                ease: "power4.out"
-            });
-
-            //step 2
             tl.to(elements, {
                 y: 0,
                 opacity: 1,
+                delay: 0.5,
                 stagger: 0.12,
                 ease: "power3.out"
             }, "+=0.2");
@@ -99,6 +110,35 @@ export default function ProductSlider() {
         });
 
     };
+
+    // btn animation
+    useEffect(() => {
+        const buttons = document.querySelectorAll(".explore-btn, .buy-now");
+
+        buttons.forEach((btn) => {
+            const overlay = btn.querySelector("::before"); // pseudo handled via GSAP workaround
+
+            btn.addEventListener("mouseenter", () => {
+                gsap.to(btn, {
+                    y: -4,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+
+                gsap.to(btn, {
+                    "--x": "0%",
+                    duration: 0.4
+                });
+            });
+
+            btn.addEventListener("mouseleave", () => {
+                gsap.to(btn, {
+                    y: 0,
+                    duration: 0.3
+                });
+            });
+        });
+    }, []);
     return (
         <main ref={containerRef} className="main-container">
 
@@ -111,9 +151,9 @@ export default function ProductSlider() {
             </div>
 
             <div className="logo">
-                <h1>
+                {/* <h1>
                     <img src="https://zigguratss.com/assets/upload/daf46078cec518ef7578288b9247f153.png" alt="" />
-                </h1>
+                </h1> */}
             </div>
 
             <Swiper
@@ -138,7 +178,6 @@ export default function ProductSlider() {
                         slidesPerView: 4,
                     }
                 }}
-
             >
 
                 {products.map((item, index) => (
@@ -146,21 +185,13 @@ export default function ProductSlider() {
                         <div className="slide-content">
 
                             <div className="info">
-                                {/* heading */}
-                                {/* <div className="heading-mask">
-                                    <h1 className="art-heading">
-                                        {"Featured ArtWork".split(" ").map((word, i) => (
-                                            <span key={i}>{word}&nbsp; </span>
-                                            // &nbsp; -- for empty space
-                                        ))}
-                                    </h1>
-                                </div> */}
+
                                 <h2 className="art-title">{item.title}</h2>
 
                                 <div className="art-meta">
-                                    <p><strong>Artist:</strong> Pradip Sarkar, India</p>
-                                    <p><strong>Category:</strong> Abstract Painting</p>
-                                    <p><strong>Size:</strong> 36 × 36 inch (91.44 × 91.44 cm)</p>
+                                    <p><strong>Artist:</strong>{item.artist}</p>
+                                    <p><strong>Category:</strong> {item.category} </p>
+                                    <p><strong>Size:</strong>{item.size} </p>
                                 </div>
 
                                 <div className="art-description">
@@ -174,7 +205,7 @@ export default function ProductSlider() {
 
                             <div className="cart-explore-btn">
                                 <button className="explore-btn">
-                                    <span>View More</span>
+                                    <span>Explore more</span>
                                 </button>
                                 <button className="buy-now">Buy Now</button>
                             </div>
