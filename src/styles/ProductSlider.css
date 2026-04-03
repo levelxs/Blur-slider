@@ -744,7 +744,7 @@
     .slider-heading {
         height: 5%;
         min-height: 30px;
-        /* responsive safety */
+
         display: flex;
         align-items: center;
         justify-content: center;
