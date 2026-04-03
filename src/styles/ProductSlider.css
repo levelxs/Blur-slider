@@ -536,6 +536,27 @@
     }
 }
 
+/* background */
+.product-slider {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.product-slider::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+
+.main-container {
+    position: relative;
+    z-index: 1;
+}
+
+
+
 /* content see more btn handle kiya */
 @media (max-width: 767px) {
 

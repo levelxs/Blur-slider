@@ -163,6 +163,56 @@ export default function ProductSlider() {
             });
         };
     }, []);
+
+    useEffect(() => {
+        const canvas = document.createElement('canvas');
+        canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;z-index:0;';
+        const slider = document.querySelector('.product-slider');
+        slider.style.position = 'relative';
+        slider.prepend(canvas);
+
+        const ctx = canvas.getContext('2d');
+        const W = canvas.width = slider.offsetWidth;
+        const H = canvas.height = slider.offsetHeight;
+
+        const rand = (a, b) => a + Math.random() * (b - a);
+
+        function inkBlob(x, y, r, color, alpha) {
+            const grad = ctx.createRadialGradient(x, y, 0, x, y, r);
+            grad.addColorStop(0, color + Math.round(alpha * 255).toString(16).padStart(2, '0'));
+            grad.addColorStop(0.45, color + Math.round(alpha * 0.5 * 255).toString(16).padStart(2, '0'));
+            grad.addColorStop(1, color + '00');
+            ctx.fillStyle = grad;
+            ctx.beginPath();
+            const wobble = r * 0.35;
+            for (let i = 0; i <= 14; i++) {
+                const angle = (i / 14) * Math.PI * 2;
+                const rr = r + rand(-wobble, wobble);
+                const px = x + rr * Math.cos(angle);
+                const py = y + rr * Math.sin(angle);
+                i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
+            }
+            ctx.closePath();
+            ctx.fill();
+        }
+
+        ctx.fillStyle = '#0c1918';
+        ctx.fillRect(0, 0, W, H);
+
+        inkBlob(W * 0.1, H * 0.3, H * 0.55, '#146446', 0.7);
+        inkBlob(W * 0.78, H * 0.45, H * 0.5, '#640F23', 0.65);
+        inkBlob(W * 0.48, H * 0.18, H * 0.45, '#0A1950', 0.6);
+        inkBlob(W * 0.42, H * 0.55, H * 0.3, '#A07820', 0.25);
+        inkBlob(W * 0.5, H * 0.5, H * 0.6, '#050810', 0.35);
+
+        const vig = ctx.createRadialGradient(W / 2, H / 2, H * 0.2, W / 2, H / 2, H * 0.9);
+        vig.addColorStop(0, 'rgba(0,0,0,0)');
+        vig.addColorStop(1, 'rgba(0,0,0,0.65)');
+        ctx.fillStyle = vig;
+        ctx.fillRect(0, 0, W, H);
+
+        return () => canvas.remove();
+    }, []);
     return (
 
         <div className='product-slider'>
@@ -223,10 +273,10 @@ export default function ProductSlider() {
                                         <p><strong>Size : </strong>{item.size} </p>
                                     </div>
 
-                                    <div className="art-description">
+                                    {/* <div className="art-description">
                                         <p className="desc-title"><strong>Description</strong></p>
                                         <ProductDesc text={item.desc} className="product-desc" />
-                                    </div>
+                                    </div> */}
 
                                 </div>
 
