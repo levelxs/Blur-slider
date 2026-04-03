@@ -9,7 +9,7 @@ function App() {
     < >
       <Router>
         <Routes>
-          <Route path="/" element={<ProductSlider />} />
+          <Route path="/blur-slider" element={<ProductSlider />} />
         </Routes>
       </Router>
     </>
